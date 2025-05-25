@@ -1,4 +1,4 @@
-https://raw.githubusercontent.com/Ekangaki/welcome-to-nguti-docker/main/WEkangaki-Suit-500x500.jpg
+https://raw.githubusercontent.com/Ekangaki/welcome-to-nguti-docker/main/Ekangaki-Suit-500x500.jpg
 
 # Welcome to Docker
 
