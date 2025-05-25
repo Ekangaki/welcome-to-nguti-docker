@@ -1,3 +1,5 @@
+https://raw.githubusercontent.com/Ekangaki/welcome-to-nguti-docker/main/WEkangaki-Suit-500x500.jpg
+
 # Welcome to Docker
 
 This is a repo for new users getting started with Docker.
