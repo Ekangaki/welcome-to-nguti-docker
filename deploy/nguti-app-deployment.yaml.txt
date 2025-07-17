@@ -1,0 +1,45 @@
+# nguti-app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nguti-app-deployment
+  namespace: nguti-app-ns # Specify the namespace
+  labels:
+    app: nguti-app # Label for the deployment
+spec:
+  replicas: 2 # Start with 2 replicas for high availability
+  selector:
+    matchLabels:
+      app: nguti-app # Selects pods with this label
+  template:
+    metadata:
+      labels:
+        app: nguti-app # Labels applied to the pods created by this deployment
+    spec:
+      containers:
+        - name: nguti-container # Name of the container
+          image: ekangaki/nguti-docker:v1 # Your Docker image
+          imagePullPolicy: IfNotPresent # Pulls if not already present on the node
+          ports:
+            - containerPort: 3000 # The port your Node.js application listens on inside the container
+          # Optional: Resource requests and limits for better scheduling and stability
+          resources:
+            requests:
+              cpu: "100m" # Request 0.1 CPU core
+              memory: "128Mi" # Request 128 MiB of memory
+            limits:
+              cpu: "200m" # Limit to 0.2 CPU core
+              memory: "256Mi" # Limit to 256 MiB of memory
+          # Optional: Liveness and Readiness Probes for robust applications
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health # Assuming your Node.js app has a /health endpoint
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /ready # Assuming your Node.js app has a /ready endpoint
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10

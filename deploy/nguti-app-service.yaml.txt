@@ -1,0 +1,19 @@
+# nguti-app-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nguti-app-service
+  namespace: nguti-app-ns # Must match the namespace of the deployment
+  labels:
+    app: nguti-app # Label for the service
+spec:
+  type: NodePort # Moved to the correct level under 'spec'
+  selector:
+    app: nguti-app # Selects pods with the label 'app: nguti-app'
+  ports:
+    - protocol: TCP
+      port: 80 # The port on which the service will be accessible (inside the cluster)
+      targetPort: 3000 # The port on the container that the service will forward traffic to
+      nodePort: 30007 # Optional: Choose a port between 30000-32767. If omitted, Kubernetes will auto-assign.
+
+
